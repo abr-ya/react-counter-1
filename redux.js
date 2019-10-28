@@ -1,5 +1,6 @@
 const redux = require('redux')
 
+// стейт по-умолчанию - старт работы
 const initialState = {
   counter: 0
 }
@@ -37,10 +38,12 @@ store.subscribe(() => {
 })
 
 // Actions
+// увеличение счетчика
 const addCounter = {
   type: 'ADD'
 }
 
+// применение экшена к стору
 store.dispatch(addCounter)
 
 store.dispatch({ type: 'SUB' })
