@@ -7,7 +7,12 @@ import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import rootReducer from './rootReducer';
 
-const store = createStore(rootReducer);
+// простой способ включения devtools
+// необходимо установить расширение браузера: https://github.com/zalmoxisus/redux-devtools-extension
+const store = createStore(
+    rootReducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 // оборачиваем App в Provider, передаём Store
 const app = (
