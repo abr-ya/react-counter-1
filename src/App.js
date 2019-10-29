@@ -1,51 +1,40 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, {useState} from 'react';
 import './App.scss';
-import {add, sub, addNum} from './actions/actions';
 
-class App extends Component {
+const App = (props) => {
+  const [inputValue, setInputValue] = useState('');
 
-  render() {
-    //console.log('APP', this.props);
-    return (
-      <div className={'App'}>
-        <h1>Управляем числом: {this.props.counter}</h1>
+  const {
+    add,
+    sub,
+    pow,
+    res,
+    counter,
+    addNum,
+  } = props;
 
-        <hr/>
+  const handleInput = e => {
+    if (!!e.target.value) {
+      setInputValue(parseFloat(e.target.value));
+    }
+  }
 
-        <div className="Actions">
-          <button onClick={this.props.onAdd}>Добавить 1</button>
-          <button onClick={this.props.onSub}>Вычесть 1</button>
-          <button onClick={this.props.onPow}>Возвести в степень</button>
-          <button onClick={this.props.onRes}>Сбросить</button>
-          <button onClick={() => this.props.onAddNum(10)}>Добавить число 10</button> {// вызываем используя замыкание
-          }
-        </div>
+  return (
+    <div className={'App'}>
+      <h1>Управляем числом: {counter}</h1>
+
+      <hr/>
+
+      <div className="Actions">
+        <button onClick={add}>Добавить 1</button>
+        <button onClick={sub}>Вычесть 1</button>
+        <button onClick={pow}>Возвести в степень</button>
+        <button onClick={res}>Сбросить</button>
+        <button onClick={() => {addNum(!!inputValue ? inputValue : 0); setInputValue('')}}>Добавить число </button>
+        <input type='number' onChange={handleInput} value={inputValue}/>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
-// переносим State (или его часть) в props компонента
-function mapStateToProps(state) {
-  return {
-    counter: state.counter,
-  }
-}
-
-// добавляем функции (обработчики) в props компонента
-function mapDispatchToProps(dispatch) {
-  return {
-    onAdd: () => dispatch(add()),
-    onSub: () => dispatch(sub()),
-    onPow: () => dispatch({type: 'POW'}), // action не вынесен в папку
-    onRes: () => dispatch({type: 'RES'}), // action не вынесен в папку
-    onAddNum: number => dispatch(addNum(number)),
-  }
-}
-
-// связываем компонент с Redux Store
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App)
+export default App;

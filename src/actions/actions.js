@@ -12,9 +12,11 @@ export function sub() {
     }
 }
 
-export function addNum(number) {
-    return {
-        type: ADD_NUM,
-        payload: number,
-    }
-}
+export const addNum = number => ({
+    type: ADD_NUM,
+    payload: number,
+});
+
+export const res = () => ({
+    type: 'RES'
+});
