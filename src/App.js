@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import './App.scss';
+import {add, sub, addNum} from './actions/actions';
 
 class App extends Component {
 
@@ -35,11 +36,11 @@ function mapStateToProps(state) {
 // добавляем функции (обработчики) в props компонента
 function mapDispatchToProps(dispatch) {
   return {
-    onAdd: () => dispatch({type: 'ADD'}),
-    onSub: () => dispatch({type: 'SUB'}),
-    onPow: () => dispatch({type: 'POW'}),
-    onRes: () => dispatch({type: 'RES'}),
-    onAddNum: number => dispatch({type: 'ADD_NUM', payload: number}),
+    onAdd: () => dispatch(add()),
+    onSub: () => dispatch(sub()),
+    onPow: () => dispatch({type: 'POW'}), // action не вынесен в папку
+    onRes: () => dispatch({type: 'RES'}), // action не вынесен в папку
+    onAddNum: number => dispatch(addNum(number)),
   }
 }
 
