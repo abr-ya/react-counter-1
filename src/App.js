@@ -8,7 +8,7 @@ class App extends Component {
     //console.log('APP', this.props);
     return (
       <div className={'App'}>
-        <h1>Счетчик <strong>{this.props.counter}</strong></h1>
+        <h1>Управляем числом: {this.props.counter}</h1>
 
         <hr/>
 
@@ -17,6 +17,8 @@ class App extends Component {
           <button onClick={this.props.onSub}>Вычесть 1</button>
           <button onClick={this.props.onPow}>Возвести в степень</button>
           <button onClick={this.props.onRes}>Сбросить</button>
+          <button onClick={() => this.props.onAddNum(10)}>Добавить число 10</button> {// вызываем используя замыкание
+          }
         </div>
       </div>
     )
@@ -37,6 +39,7 @@ function mapDispatchToProps(dispatch) {
     onSub: () => dispatch({type: 'SUB'}),
     onPow: () => dispatch({type: 'POW'}),
     onRes: () => dispatch({type: 'RES'}),
+    onAddNum: number => dispatch({type: 'ADD_NUM', payload: number}),
   }
 }
 

@@ -20,7 +20,11 @@ export default function rootReducer(state = initialState, action) {
             return {
                 counter: 0
             }
+        case 'ADD_NUM':
+            return {
+                counter: state.counter + action.payload
+            }
+        default:
+            return state;
     }
-
-    return state;
 }
