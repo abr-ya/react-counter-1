@@ -1,5 +1,5 @@
 //import { combineReducers } from "redux";
-import {ADD, SUB, ADD_NUM} from './actions/actionTypes';
+import {ADD, SUB, POW, RES, ADD_NUM} from './actions/actionTypes';
 
 // при объединении
 // import {combineReducers} from 'redux';
@@ -25,11 +25,11 @@ export default function rootReducer(state = initialState, action) {
             return {
                 counter: state.counter - 1
             }
-        case 'POW':
+        case POW:
             return {
                 counter: state.counter * state.counter
             }
-        case 'RES':
+        case RES:
             return {
                 counter: 0
             }
